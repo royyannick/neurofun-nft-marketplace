@@ -9,24 +9,14 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const { chainId, account, isWeb3Enabled } = useMoralis();
-  const chainString = chainId ? parseInt(chainId).toString() : "31337";
-  const marketplaceAddress = "0xFb1776E0D945A2D2dA94a56f1200ce2CA42F3a99";
-  //const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
+  let chainString = chainId ? parseInt(chainId).toString() : "31337";
+  //TODO: CHANGE THIS!!!
+  chainString = chainString == "1" ? "5" : chainString;
+  const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
   const dispatch = useNotification();
   const [proceeds, setProceeds] = useState("0");
 
   const { runContractFunction } = useWeb3Contract();
-
-  console.log(chainString);
-  console.log("--------- 1 --------");
-  console.log(networkMapping);
-  console.log("--------- 2 --------");
-  console.log(networkMapping[chainString]);
-  console.log("--------- 3 --------");
-  console.log(networkMapping[chainString]["NftMarketplace"]);
-  console.log("--------- 4 --------");
-  console.log(networkMapping[chainString]["NftMarketplace"][0]);
-  console.log("--------- 5 --------");
 
   async function approveAndList(data) {
     console.log("Approving...");
