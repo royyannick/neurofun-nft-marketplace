@@ -138,9 +138,9 @@ export default function NFTBox({
               onClick={handleCardClick}
             >
               <div className="p-2">
-                <div className="flex flex-col items-end gap-2">
+                <div className="flex flex-col items-end gap-4">
                   <div>#{tokenId}</div>
-                  <div className="italic text-sm">
+                  <div className="text-sm italic">
                     Owned by {formattedSellerAddress}
                   </div>
                   <Image
