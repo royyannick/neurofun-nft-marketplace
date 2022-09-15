@@ -16,6 +16,8 @@ export default function Home() {
 
   const { runContractFunction } = useWeb3Contract();
 
+  console.log(networkMapping);
+
   async function approveAndList(data) {
     console.log("Approving...");
     const nftAddress = data.data[0].inputResult;

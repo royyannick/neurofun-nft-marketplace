@@ -16,28 +16,28 @@ export default function Home() {
   return (
     <div className="container mx-auto">
       <h1 className="px-4 py-4 text-2xl font-bold">Recently Listed</h1>
-      <div className="flex flex-wrap">
+      {/*<div className="flex flex-wrap">
         {isWeb3Enabled ? (
           loading || !listedNfts ? (
             <div>Loading...</div>
           ) : (
             listedNfts.activeItems.map((nft) => {
-              return (
-                <NFTBox
+              return  <NFTBox
                   price={nft.price}
                   nftAddress={nft.nftAddress}
                   tokenId={nft.tokenId}
                   marketplaceAddress={marketplaceAddress}
                   seller={nft.seller}
                   key={`${nft.nftAddress}${nft.tokenId}`}
-                />
-              );
+                /> 
             })
           )
         ) : (
           <div>Web3 Currently Not Enabled</div>
         )}
-      </div>
+        
+      </div>*/}
+      ;
     </div>
   );
 }
