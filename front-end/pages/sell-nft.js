@@ -17,7 +17,16 @@ export default function Home() {
 
   const { runContractFunction } = useWeb3Contract();
 
+  console.log(chainString);
+  console.log("--------- 1 --------");
   console.log(networkMapping);
+  console.log("--------- 2 --------");
+  console.log(networkMapping[chainString]);
+  console.log("--------- 3 --------");
+  console.log(networkMapping[chainString]["NftMarketplace"]);
+  console.log("--------- 4 --------");
+  console.log(networkMapping[chainString]["NftMarketplace"][0]);
+  console.log("--------- 5 --------");
 
   async function approveAndList(data) {
     console.log("Approving...");
