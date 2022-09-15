@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const { chainId, account, isWeb3Enabled } = useMoralis();
   const chainString = chainId ? parseInt(chainId).toString() : "31337";
-  const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
+  marketplaceAddress = "0xFb1776E0D945A2D2dA94a56f1200ce2CA42F3a99";
+  //const marketplaceAddress = networkMapping[chainString].NftMarketplace[0];
   const dispatch = useNotification();
   const [proceeds, setProceeds] = useState("0");
 
