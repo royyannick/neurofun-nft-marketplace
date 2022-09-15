@@ -23,7 +23,6 @@ export default function Home() {
           ) : (
             listedNfts.activeItems.map((nft) => {
               return (
-              <div>
                 <NFTBox
                   price={nft.price}
                   nftAddress={nft.nftAddress}
@@ -32,7 +31,6 @@ export default function Home() {
                   seller={nft.seller}
                   key={`${nft.nftAddress}${nft.tokenId}`}
                 />
-              </div>;
               );
             })
           )
