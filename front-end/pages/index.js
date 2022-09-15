@@ -15,26 +15,24 @@ export default function Home() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="py-4 px-4 font-bold text-2xl">Recently Listed</h1>
+      <h1 className="px-4 py-4 text-2xl font-bold">Recently Listed</h1>
       <div className="flex flex-wrap">
         {isWeb3Enabled ? (
           loading || !listedNfts ? (
             <div>Loading...</div>
           ) : (
             listedNfts.activeItems.map((nft) => {
-              console.log(nft);
-              const { price, nftAddress, tokenId, seller } = nft;
               return (
-                <div>
-                  <NFTBox
-                    price={price}
-                    nftAddress={nftAddress}
-                    tokenId={tokenId}
-                    marketplaceAddress={marketplaceAddress}
-                    seller={seller}
-                    key={`${nftAddress}${tokenId}`}
-                  />
-                </div>
+              <div>
+                <NFTBox
+                  price={nft.price}
+                  nftAddress={nft.nftAddress}
+                  tokenId={nft.tokenId}
+                  marketplaceAddress={marketplaceAddress}
+                  seller={nft.seller}
+                  key={`${nft.nftAddress}${nft.tokenId}`}
+                />
+              </div>;
               );
             })
           )
