@@ -1,13 +1,13 @@
 {
-  "name": "nick-nft-marketplace",
+  "name": "neurofuntrade",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ nick-nft-marketplace",
-    "create-local": "graph create --node http://localhost:8020/ nick-nft-marketplace",
-    "remove-local": "graph remove --node http://localhost:8020/ nick-nft-marketplace",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nick-nft-marketplace",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ neurofuntrade",
+    "create-local": "graph create --node http://localhost:8020/ neurofuntrade",
+    "remove-local": "graph remove --node http://localhost:8020/ neurofuntrade",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 neurofuntrade",
     "test": "graph test"
   },
   "dependencies": {

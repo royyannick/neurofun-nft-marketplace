@@ -71,6 +71,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -109,3 +110,15 @@ dist
 
 # NFT Real Images Directory
 NFTs-Images/
+
+#Mac File
+*DS_Store
+
+#Hardhat files
+cache
+artifacts
+deployments
+
+#yarn files
+yarn-error.log
+yarn.lock

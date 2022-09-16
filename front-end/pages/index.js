@@ -21,7 +21,7 @@ export default function Home() {
       <div className="flex flex-wrap">
         {isWeb3Enabled ? (
           loading || !listedNfts ? (
-            <div>Loading...</div>
+            <div>Loading... </div>
           ) : (
             listedNfts.activeItems.map((nft) => {
               return (

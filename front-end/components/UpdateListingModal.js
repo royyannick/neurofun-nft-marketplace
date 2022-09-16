@@ -20,7 +20,7 @@ export default function UpdateListingModal({
     dispatch({
       type: "success",
       message: "listing updated",
-      title: "Listing updated - please refresh (and move blocks)",
+      title: "Listing updated - please refresh.",
       position: "topR",
     });
     onClose && onClose();

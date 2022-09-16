@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useWeb3Contract, useMoralis } from "react-moralis";
 import nftMarketplaceAbi from "../constants/NftMarketplace.json";
-import nftAbi from "../constants/BasicNFT.json";
+import nftAbi from "../constants/NftRngIpfs.json";
 import Image from "next/image";
 import { Card, useNotification } from "web3uikit";
 import { ethers } from "ethers";
@@ -46,13 +46,6 @@ export default function NFTBox({
     },
   });
 
-  const { runContractFunction: getDebug } = useWeb3Contract({
-    abi: nftAbi,
-    contractAddress: nftAddress,
-    functionName: "getDebug",
-    params: {},
-  });
-
   const { runContractFunction: buyItem } = useWeb3Contract({
     abi: nftMarketplaceAbi,
     contractAddress: marketplaceAddress,
@@ -69,7 +62,7 @@ export default function NFTBox({
     //const strDebug = await getDebug();
     //console.log(strDebug);
     //console.log("----------------");
-    const tokenURI = await getDebug(); //getTokenURI();
+    const tokenURI = await getTokenURI();
     console.log(`The TokenURI is ${tokenURI}`);
     // We are going to cheat a little here...
     if (tokenURI) {
@@ -78,6 +71,9 @@ export default function NFTBox({
       const tokenURIResponse = await (await fetch(requestURL)).json();
       const imageURI = tokenURIResponse.image;
       const imageURIURL = imageURI.replace("ipfs://", "https://ipfs.io/ipfs/");
+      console.log("-------- IMG ----------");
+      console.log(imageURIURL);
+      console.log("-------- /IMG ----------");
       setImageURI(imageURIURL);
       setTokenName(tokenURIResponse.name);
       setTokenDescription(tokenURIResponse.description);
