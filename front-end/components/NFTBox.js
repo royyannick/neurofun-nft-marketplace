@@ -3,7 +3,7 @@ import { useWeb3Contract, useMoralis } from "react-moralis";
 import nftMarketplaceAbi from "../constants/NftMarketplace.json";
 import nftAbi from "../constants/NftRngIpfs.json";
 import Image from "next/image";
-import { Card, useNotification } from "web3uikit";
+import { Card, useNotification, Accordion, ConnectButton } from "web3uikit";
 import { ethers } from "ethers";
 import UpdateListingModal from "./UpdateListingModal";
 
@@ -120,7 +120,7 @@ export default function NFTBox({
     <div>
       <div>
         {imageURI ? (
-          <div>
+          <div className="p-2">
             <UpdateListingModal
               isVisible={showModal}
               tokenId={tokenId}
@@ -143,7 +143,7 @@ export default function NFTBox({
                     loader={() => imageURI}
                     src={imageURI}
                     height="200"
-                    width="200"
+                    width="250"
                   />
                   <div className="font-bold">
                     {ethers.utils.formatUnits(price, "ether")} ETH
@@ -153,7 +153,7 @@ export default function NFTBox({
             </Card>
           </div>
         ) : (
-          <div>Loading...</div>
+          <div> . </div>
         )}
       </div>
     </div>

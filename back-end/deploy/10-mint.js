@@ -34,7 +34,7 @@ module.exports = async function ({ getNamedAccounts }) {
     }
   });
 
-  const tokenCounter = await IpfsNFTtx.tokenCounter();
+  const tokenCounter = await IpfsNFT.tokenCounter();
   console.log(
     `Random IPFS NFT index ${tokenCounter} has TokenURI: ${await IpfsNFT.tokenURI(
       tokenCounter

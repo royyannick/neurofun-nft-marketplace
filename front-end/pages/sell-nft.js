@@ -1,8 +1,8 @@
 import styles from "../styles/Home.module.css";
-import { Form, useNotification, Button } from "web3uikit";
+import { Form, useNotification, Row } from "web3uikit";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import { ethers } from "ethers";
-import nftAbi from "../constants/BasicNFT.json";
+import nftAbi from "../constants/NftRngIpfs.json";
 import nftMarketplaceAbi from "../constants/NftMarketplace.json";
 import networkMapping from "../constants/networkMapping.json";
 import { useEffect, useState } from "react";
@@ -75,15 +75,6 @@ export default function Home() {
     });
   }
 
-  const handleWithdrawSuccess = async (tx) => {
-    await tx.wait(1);
-    dispatch({
-      type: "success",
-      message: "Withdrawing proceeds",
-      position: "topR",
-    });
-  };
-
   async function setupUI() {
     const returnedProceeds = await runContractFunction({
       params: {
@@ -108,54 +99,49 @@ export default function Home() {
   }, [proceeds, account, isWeb3Enabled, chainId]);
 
   return (
-    <div className={styles.container}>
-      <Form
-        onSubmit={approveAndList}
-        data={[
-          {
-            name: "NFT Address",
-            type: "text",
-            inputWidth: "50%",
-            value: "",
-            key: "nftAddress",
-          },
-          {
-            name: "Token ID",
-            type: "number",
-            value: "",
-            key: "tokenId",
-          },
-          {
-            name: "Price (in ETH)",
-            type: "number",
-            value: "",
-            key: "price",
-          },
-        ]}
-        title="Sell your NFT!"
-        id="Main Form"
-      />
-      <div>Withdraw {proceeds} proceeds</div>
-      {proceeds != "0" ? (
-        <Button
-          onClick={() => {
-            runContractFunction({
-              params: {
-                abi: nftMarketplaceAbi,
-                contractAddress: marketplaceAddress,
-                functionName: "withdrawProceeds",
-                params: {},
+    <Row alignItems="center" justifyItems="center">
+      <div className="w-3/4 py-5">
+        <div className={styles.container}>
+          <Form
+            buttonConfig={{
+              theme: "custom",
+              customize: {
+                backgroundColor: "#23B2C6",
+                fontSize: 16,
+                onHover: "darken",
+                textColor: "#F4F4F4",
               },
-              onError: (error) => console.log(error),
-              onSuccess: handleWithdrawSuccess,
-            });
-          }}
-          text="Withdraw"
-          type="button"
-        />
-      ) : (
-        <div>No proceeds detected</div>
-      )}
-    </div>
+            }}
+            data={[
+              {
+                name: "NFT Address",
+                type: "text",
+                inputWidth: "80%",
+                value: "",
+                key: "nftAddress",
+              },
+              {
+                name: "Token ID",
+                type: "number",
+                inputWidth: "10%",
+                value: "",
+                key: "tokenId",
+              },
+              {
+                name: "Price (in ETH)",
+                type: "number",
+                inputWidth: "40%",
+                value: "",
+                key: "price",
+              },
+            ]}
+            title="Sell your NFT!"
+            id="Main Form"
+            position="center"
+            onSubmit={approveAndList}
+          />
+        </div>
+      </div>
+    </Row>
   );
 }

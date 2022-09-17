@@ -25,7 +25,9 @@ function NFTMarketplace({ Component, pageProps }) {
           <NotificationProvider>
             <Header />
             <Component {...pageProps} />
-            <Footer />
+            <div className="py-10">
+              <Footer />
+            </div>
           </NotificationProvider>
         </ApolloProvider>
       </MoralisProvider>
