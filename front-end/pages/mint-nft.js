@@ -16,7 +16,7 @@ export default function Home() {
 
   const { runContractFunction } = useWeb3Contract();
 
-  const nftAddress = "0x604a3Fb6c7Df16190E260FDfd79363bF8b4701C9";
+  const nftAddress = "0x16438e0608d6e38Ab1897262AFbC4dAE05E59996";
   const mintFee = "10000000000000000";
 
   async function mint() {

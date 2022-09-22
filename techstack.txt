@@ -1,0 +1,9 @@
+Solidity
+Hardhat
+NextJS, Web3UIKit, TailwindCSS
+IPFS, Pinata
+The Graph (GraphQL)
+VRF (Chainlink)
+Netlify
+--
+Ethereum Goerli Testnet

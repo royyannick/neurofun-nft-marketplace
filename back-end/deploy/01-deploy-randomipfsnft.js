@@ -62,16 +62,14 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
   let neuroTokenUris;
   if (process.env.PINATA_UPLOAD_TO == "true") {
     neuroTokenUris = await handleTokenURIs();
-  } /* else {
+  } else {
     neuroTokenUris = [
-      "ipfs://QmU1UQg2E1MXtp8RQKgS6FuHHS4GrwLHPvLR8vowWchqcv",
-      "ipfs://QmcnhLhv9tMDxD8VGqYhDVaQhVP4ZvJUX2FJ6jx7YVn7ou",
-      "ipfs://QmQ5G9p4dHWZSnL9NL8ZfqiHchs55AGjXNFqjwXvAGXF3Y",
-      "ipfs://QmagS2DGaFTEuRcyPQWVWiixeo4uqeJPm6LLRUwZWsGs7h",
-      "ipfs://QmQ3Xxjf43921qAbrAFjW6yPz9ZA6tboNKHG5rQo28j9Jg",
-      "ipfs://QmR69rSP52FGGMPTFTkqbmCYKChTEUtBAxnZAXxQs9m9AG",
+      "ipfs://QmWDsYNDfddYMeQUjGk9wh9j2ndpKGjai9pX9ZHKmPrqRq",
+      "ipfs://QmPFJo4NBcRqDvLAndNbgdxLSXmvan9e7yPtWhvsc2U9et",
+      "ipfs://QmdcnbNvcxpsWgLN1ywYtT7L2XowjzbXLzVXsy2GTbLMui",
+      "ipfs://QmYZFLviu8k7UYNWWX9G1apk1gWK7F3BXvzCTSL72UJ62c",
     ];
-  } */
+  }
 
   if (developmentChains.includes(network.name)) {
     const vrfCoordinatorV2Mock = await ethers.getContract(
