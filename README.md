@@ -5,6 +5,8 @@ This is a pet (fun) project allowing to mint neuro-related NFTs and list/sell/bu
 _THIS IS A TEST PROJECT, NOT A REAL PROJECT._  
 _(NO REAL NTFs - NO REAL VALUE)_
 
+Smart Contracts deployed on Goerli and Website deployed via Netlify: [https://neuronft.netlify.app/sell-nft](https://neuronft.netlify.app/sell-nft)
+
 ---
 
 ## Tech Stack
