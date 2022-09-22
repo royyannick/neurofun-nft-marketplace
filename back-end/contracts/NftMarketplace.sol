@@ -1,11 +1,15 @@
 // SPDX-License-Identifier:MIT
 pragma solidity ^0.8.8;
 
-// Author
+// Author: Yannick Roy
+// Date: Sept. 2022
+// Description: Pet project to learn more avout NTFs and building an
+//              NFT Marketplace using a random number generator, IPFS storage
+//              and decentralized indexer such as The Graph.
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "hardhat/console.sol";
+import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
+import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
+import 'hardhat/console.sol';
 
 error NftMarketplace__PriceMustBeAboveZero();
 error NftMarketplace__NotApprovedForMarketPlace();
@@ -36,11 +40,7 @@ contract NftMarketplace is ReentrancyGuard {
         uint256 price
     );
 
-    event ItemCanceled(
-        address indexed seller,
-        address indexed nftAddress,
-        uint256 indexed tokenId
-    );
+    event ItemCanceled(address indexed seller, address indexed nftAddress, uint256 indexed tokenId);
 
     // NFT Contract address -> NFT Token ID -> Listing
     mapping(address => mapping(uint256 => Listing)) private s_listings;
@@ -91,11 +91,7 @@ contract NftMarketplace is ReentrancyGuard {
         address nftAddress,
         uint256 tokenId,
         uint256 price
-    )
-        external
-        notListed(nftAddress, tokenId, msg.sender)
-        isOwner(nftAddress, tokenId, msg.sender)
-    {
+    ) external notListed(nftAddress, tokenId, msg.sender) isOwner(nftAddress, tokenId, msg.sender) {
         if (price <= 0) {
             revert NftMarketplace__PriceMustBeAboveZero();
         }
@@ -120,17 +116,11 @@ contract NftMarketplace is ReentrancyGuard {
         if (msg.value < listedItem.price) {
             revert NftMarketplace__PriceNotMet();
         }
-        s_proceeds[listedItem.seller] =
-            s_proceeds[listedItem.seller] +
-            msg.value;
+        s_proceeds[listedItem.seller] = s_proceeds[listedItem.seller] + msg.value;
 
         delete (s_listings[nftAddress][tokenId]);
 
-        IERC721(nftAddress).safeTransferFrom(
-            listedItem.seller,
-            msg.sender,
-            tokenId
-        );
+        IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId);
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
@@ -148,11 +138,7 @@ contract NftMarketplace is ReentrancyGuard {
         address nftAddress,
         uint256 tokenId,
         uint256 newPrice
-    )
-        external
-        isListed(nftAddress, tokenId)
-        isOwner(nftAddress, tokenId, msg.sender)
-    {
+    ) external isListed(nftAddress, tokenId) isOwner(nftAddress, tokenId, msg.sender) {
         s_listings[nftAddress][tokenId].price = newPrice;
         emit ItemListed(msg.sender, nftAddress, tokenId, newPrice);
     }
@@ -163,7 +149,7 @@ contract NftMarketplace is ReentrancyGuard {
             revert NftMarketplace__NoProceeds();
         }
         s_proceeds[msg.sender] = 0;
-        (bool success, ) = payable(msg.sender).call{value: proceeds}("");
+        (bool success, ) = payable(msg.sender).call{value: proceeds}('');
         if (!success) {
             revert NftMarketplace__TransferFailed();
         }

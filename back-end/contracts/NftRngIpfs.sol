@@ -1,11 +1,17 @@
 // SPDX-License-Identifier:MIT
 pragma solidity ^0.8.7;
 
-import "hardhat/console.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+// Author: Yannick Roy
+// Date: Sept. 2022
+// Description: Pet project to learn more avout NTFs and building an
+//              NFT Marketplace using a random number generator, IPFS storage
+//              and decentralized indexer such as The Graph.
+
+import 'hardhat/console.sol';
+import '@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol';
+import '@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol';
+import '@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
 
 error RandomIpfsNft__RangeOutOfBount();
 error RandomIpfsNft__NeedMoreETHSent();
@@ -48,7 +54,7 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         uint32 callbackGasLimit,
         string[NB_NEUROTECH] memory neuroTokenUris,
         uint256 mintFee
-    ) VRFConsumerBaseV2(vrfCoordinatorV2) ERC721("NeuroFunTrade", "NF") {
+    ) VRFConsumerBaseV2(vrfCoordinatorV2) ERC721('NeuroFunTrade', 'NF') {
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
         i_subscriptionId = subscriptionId;
         i_gasLane = gasLane;
@@ -59,7 +65,7 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
     }
 
     function requestNtf() public payable returns (uint256 requestId) {
-        console.log("Requesting NTF...");
+        console.log('Requesting NTF...');
         if (msg.value < i_mintFee) {
             revert RandomIpfsNft__NeedMoreETHSent();
         }
@@ -72,14 +78,11 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         );
         s_requestIdToSender[requestId] = msg.sender;
 
-        console.log("NTF Requested!");
+        console.log('NTF Requested!');
         emit NftRequested(requestId, msg.sender);
     }
 
-    function fulfillRandomWords(uint256 requestID, uint256[] memory randomWords)
-        internal
-        override
-    {
+    function fulfillRandomWords(uint256 requestID, uint256[] memory randomWords) internal override {
         address neuroOwner = s_requestIdToSender[requestID];
         uint256 newTokenID = s_tokenCounter;
 
@@ -90,13 +93,13 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         _safeMint(neuroOwner, newTokenID);
         _setTokenURI(newTokenID, s_neuroTokenUris[uint256(tech)]);
 
-        console.log("NTF Requested!");
+        console.log('NTF Requested!');
         emit NftMinted(tech, msg.sender);
     }
 
     function withdraw() public onlyOwner {
         uint256 amount = address(this).balance;
-        (bool success, ) = payable(msg.sender).call{value: amount}("");
+        (bool success, ) = payable(msg.sender).call{value: amount}('');
         if (!success) {
             revert RandomIpfsNft__TransferFailed();
         }
@@ -106,10 +109,7 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         uint256 cumulativeSum = 0;
         uint256[NB_NEUROTECH] memory chanceArray = getChanceArray();
         for (uint256 i = 0; i < chanceArray.length; i++) {
-            if (
-                moddedRng >= cumulativeSum &&
-                moddedRng < cumulativeSum + chanceArray[i]
-            ) {
+            if (moddedRng >= cumulativeSum && moddedRng < cumulativeSum + chanceArray[i]) {
                 return NeuroTech(i);
             }
             cumulativeSum += chanceArray[i];
@@ -118,11 +118,7 @@ contract NftRngIpfs is VRFConsumerBaseV2, ERC721URIStorage, Ownable {
         revert RandomIpfsNft__RangeOutOfBount();
     }
 
-    function getChanceArray()
-        public
-        pure
-        returns (uint256[NB_NEUROTECH] memory)
-    {
+    function getChanceArray() public pure returns (uint256[NB_NEUROTECH] memory) {
         //Order: DBS, TMS, tDCS, EEG
         return [5, 20, 30, uint256(45)];
     }

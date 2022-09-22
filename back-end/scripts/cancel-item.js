@@ -1,28 +1,29 @@
-const { ethers, network } = require("hardhat");
-const { moveBlocks } = require("../utils/move-blocks");
+// Author: Yannick Roy
+// Date: Sept. 2022
+// Description: Pet project to learn more avout NTFs and building an
+//              NFT Marketplace using a random number generator, IPFS storage
+//              and decentralized indexer such as The Graph.
 
-const TOKEN_ID = 0;
+const { ethers, network } = require('hardhat')
+const { moveBlocks } = require('../utils/move-blocks')
+
+const TOKEN_ID = 0
 
 async function cancel() {
-  const nftMarketplace = await ethers.getContract("NftMarketplace");
-  const basicNFT = await ethers.getContract("BasicNFT");
-  const tx = await nftMarketplace.cancelListing(
-    (
-      await basicNFT
-    ).address,
-    TOKEN_ID
-  );
-  await tx.wait(1);
-  console.log("NFT Canceled.");
+    const nftMarketplace = await ethers.getContract('NftMarketplace')
+    const basicNFT = await ethers.getContract('BasicNFT')
+    const tx = await nftMarketplace.cancelListing((await basicNFT).address, TOKEN_ID)
+    await tx.wait(1)
+    console.log('NFT Canceled.')
 
-  if (network.config.chainId == "31337") {
-    await moveBlocks(2, (sleepAmount = 1000));
-  }
+    if (network.config.chainId == '31337') {
+        await moveBlocks(2, (sleepAmount = 1000))
+    }
 }
 
 cancel()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error)
+        process.exit(1)
+    })
