@@ -2,8 +2,7 @@
 
 This is a pet (fun) project allowing to mint neuro-related NFTs and list/sell/buy them on an NFT Marketplace Goerli Testnet.
 
-_THIS IS A TEST PROJECT, NOT A REAL PROJECT._  
-_(NO REAL NTFs - NO REAL VALUE)_
+_This is a test project, not a real project. No real NFTs, no real value. The value resides in the learning! And that's worth more than a few NFTs. (well, maybe not during the peak of a bull run...)_
 
 Smart Contracts deployed on Goerli and Website deployed via Netlify: [https://neuronft.netlify.app/sell-nft](https://neuronft.netlify.app/sell-nft)
 
