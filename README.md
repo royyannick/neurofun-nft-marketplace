@@ -1,7 +1,9 @@
-# neurofun-nft-marketplace
+# NeuroFunTrade - NFT Marketplace
 
 This is a pet (fun) project allowing to mint neuro-related NFTs and list/sell/buy them on an NFT Marketplace Goerli Testnet.
-THIS IS A TEST PROJECT, NOT A REAL PROJECT!
+
+_THIS IS A TEST PROJECT, NOT A REAL PROJECT._  
+_(NO REAL NTFs - NO REAL VALUE)_
 
 ---
 
@@ -9,35 +11,43 @@ THIS IS A TEST PROJECT, NOT A REAL PROJECT!
 
 - Solidity
 - Hardhat
-- ReactJS, NextJS
+- ReactJS, NextJS (+ Web3UIKit, TailwindCSS)
+- Pinata
 - The Graph
 - Moralis
 - Open Zeppelin
 - Apollo Client
+- Chainlink VRF
+- Netlify (Web App Deployed - linked with this Github repo)
 
 ---
 
-## Back-End
+## Smart Contract
 
-2 Smart Contracts (+1 mock):
+2 Smart Contracts (+1 mock) deployed on Goerli (Ethereum Testnet):
 
-## Front-End
+0. [Mock] VRF Coordinator (for local tests)
+1. NFT (IERC721)
+2. NFT Marketplace
 
-NTF Marketplace
-NTF - on Ethereum (testnet)
+---
 
-Solidity (for writing Smart Contract) with Hardhat in VS Code
-NextJS (for front-end), alongside with Web3UIKit and TailwindCSS
+## NFT Marketplace Website
 
-For the NFT images and metadata storage I'm using IPFS and Pinata to pin to IPFS path or URI.
+Main Page - Listing Available NTFs.
+![NTFs Listing](./img/nft-marketplace.png "NFT Marketplace - Listing")
 
-For Indexing the events from the blockchain I'm using The Graph a Decentralized indexer. Think Google of the Blockchain but decentralized.
+Sell Page - Allows the users to sell (i.e. list) their NFTs.
+![NTFs Sell](./img/sell-nft.png "NFT Marketplace - Sell")
 
-For the Random Number Generator since the NFTs are generated randomly, I'm using ChainLink VRF. ChainLink is the main service provider for Off-Chain stuff. (when you need to bring off-chain data or insights like the price of an asset or real-world sensor sates or whatever)
+Mint Page - Allows the users to mint new NFTs.
+![NTFs Mint](./img/mint-nft.png "NFT Marketplace - Mint")
 
-And finally the whole code is available on GitHub and the website deployed on Netlify for a live website, not just a localhost version.
-I'm not expecting anyone to use it nor try it, but I wanted to complete the full circle up to deploying it.
+About Page
+![About](./img/about-page.png "NFT Marketplace - About")
 
-I had so much fun doing this little pet project and learning more about blockchain dev, tools and tech stack.
+---
 
-Let's get right into it!
+_This project was inspired by the [32 hours FreeCodeCamp course by Patrick Collins](https://www.youtube.com/watch?v=gyMwXuJrbJQ&ab_channel=freeCodeCamp.org) on Full Stack Blockchain using JS._
+
+_Thanks Pat for such an amazing course! I've learned so much and had so much fun coding along!_
