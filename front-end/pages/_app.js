@@ -9,7 +9,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/34705/neurofuntrade/v0.0.6",
+  uri: "https://api.studio.thegraph.com/query/52020/neurofuntrade/version/latest",
 });
 
 function NFTMarketplace({ Component, pageProps }) {
