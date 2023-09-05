@@ -87,9 +87,9 @@ export default function NFTBox({
   }
 
   useEffect(() => {
-    if (isWeb3Enabled) {
+    //if (isWeb3Enabled) {
       updateUI();
-    }
+    //}
   }, [isWeb3Enabled]);
 
   const isOwnedByUser = seller === account || seller === undefined;
