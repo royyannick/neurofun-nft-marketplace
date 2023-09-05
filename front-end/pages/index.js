@@ -19,7 +19,7 @@ export default function Home() {
     <div className="container mx-auto">
       <h1 className="px-4 py-4 text-2xl font-bold">Recently Listed</h1>
       <div className="flex flex-wrap">
-        {
+        {isWeb3Enabled ? (
           loading || !listedNfts ? (
             <div>Loading... </div>
           ) : (
@@ -36,7 +36,9 @@ export default function Home() {
               );
             })
           )
-        }
+        ) : (
+          <div>Web3 Currently Not Enabled</div>
+        )}
       </div>
     </div>
   );
